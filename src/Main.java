@@ -6,21 +6,14 @@ public class Main {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.print("Digite a hora: ");
-		double hora = sc.nextDouble();
+		System.out.print("Digite o valor da compra: ");
+		double preco = sc.nextDouble();
+		double novoPreco = (preco < 20) ? preco * 0.1 : preco *0.05;
+		
+		System.out.println("Valor do Desconto: " + novoPreco);
+		System.out.println("Valor total: " + (preco - novoPreco));
+		
 		sc.close();
-		
-		if((hora > 1) && (hora < 11)) {
-			System.out.println("Bom Dia");
-		}
-		
-		if((hora >= 12) && (hora < 17)) {
-			System.out.println("Boa Tarde");
-		}
-		
-		if(hora >= 18) {
-			System.out.println("Boa Noite");
-		}
 	}
 
 }
