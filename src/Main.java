@@ -1,39 +1,35 @@
 import java.util.Scanner;
-import entities.Triangle;
+
+import entities.Product;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Insira as medidas do triangulo X:");
 		
-		Triangle x, y;
+		Product product = new Product();
 		
-		x = new Triangle();
-		y = new Triangle();
+		System.out.print("Insira o nome: ");
+		product.name = sc.next();
 		
-		 x.a = sc.nextDouble();
-		 x.b = sc.nextDouble();
-		 x.c = sc.nextDouble();
+		System.out.print("Insira o preco: ");
+		product.price = sc.nextDouble();
 		
-		System.out.println("Insira as medidas do traingulo Y:");
+		System.out.print("Insira a quantidade: ");
+		product.quantity = sc.nextInt();
+		System.out.println(product.toString());
 		
-		 y.a = sc.nextDouble();
-		 y.a = sc.nextDouble();
-		 y.a = sc.nextDouble();
-		 
-		double areay = y.areaResult();
-		double areax = x.areaResult();
+		System.out.print("Enter the number of the products to be added in stock: ");
+		int add = sc.nextInt();
+		product.addProducts(add);
+		System.out.println(product.toString());
 		
-		System.out.printf("A area do triangulo X: %.4f%n", areax);
-		System.out.printf("A area do triangulo Y: %.4f%n", areay);
-		
-		if(areax > areay) {
-			System.out.println("A maior area e a do triangulo X");
-		}else {
-			System.out.println("A maior area e a do traingulo Y");
-		}
+		System.out.print("Enter the number of the products to be remove in stock: ");
+		int remove = sc.nextInt();
+		product.removeProducts(remove);
+		System.out.println(product.toString());
+
 		
 		sc.close();
 	}
