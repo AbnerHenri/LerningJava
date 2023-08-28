@@ -1,49 +1,31 @@
+import java.util.Locale;
 import java.util.Scanner;
-import entities.Account;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
+		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner(System.in);
+			
+		System.out.print("Digite a quantidade de alturas: ");
+		int n = sc.nextInt();
+		double media = 0;
 		
-		System.out.print("Enter account number: ");
-		int number = scan.nextInt();
+		double[] vect = new double[n];
 		
-		System.out.print("Enter account holder: ");
-		String name = scan.next();
-		
-		System.out.print("Is there na initial deposit (y/n)? : ");
-		char firstDeposit = scan.next().charAt(0);
-		
-		if(firstDeposit == 'n') {
-			Account newAccount = new Account(number, name);
-			System.out.println("Updated data: ");
-			newAccount.showData();
-			
-			System.out.print("Enter a deposit value: ");
-			double newValue = scan.nextDouble();
-			newAccount.deposit(newValue);
-			System.out.println("Updated data: ");
-			
-			System.out.print("Enter a withdraw value: ");
-			double withDrawValue = scan.nextDouble();
-			newAccount.withdraw(withDrawValue);
-			
-		}else {
-			System.out.print("Enter inital deposit value: ");
-			double value = scan.nextDouble();
-			Account newAccount = new Account(number, name, value);
-			
-			System.out.print("Enter a deposit value: ");
-			double newValue = scan.nextDouble();
-			System.out.println("Updated data: ");
-			newAccount.deposit(newValue);
-			
-			
-			System.out.print("Enter a withdraw value: ");
-			double withDrawValue = scan.nextDouble();
-			newAccount.withdraw(withDrawValue);
+		for(int i = 0; i < n; i++) {
+			System.out.print("Height " + (i + 1) + ": ");
+			vect[i] = sc.nextDouble();
 		}
-		scan.close();	
+		
+		for(int i = 0; i< n; i++) {
+			media += vect[i];
+		}
+		
+		double result = media / n;
+		
+		System.out.printf("A media dos %d valores e: %.2f", n, result);
+		
+		sc.close();
 	}
 }
