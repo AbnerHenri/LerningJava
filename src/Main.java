@@ -1,30 +1,36 @@
 import java.util.Locale;
 import java.util.Scanner;
 
+import entities.Product;
+
 public class Main {
 
 	public static void main(String[] args) {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 			
-		System.out.print("Digite a quantidade de alturas: ");
+		System.out.print("Digite a quantidade de produtos: ");
 		int n = sc.nextInt();
-		double media = 0;
 		
-		double[] vect = new double[n];
+		Product[] vect = new Product[n];
 		
 		for(int i = 0; i < n; i++) {
-			System.out.print("Height " + (i + 1) + ": ");
-			vect[i] = sc.nextDouble();
+			System.out.printf("Digite o nome %d do produto: ", (i + 1));
+			String name = sc.next();
+			
+			System.out.printf("Digite o preco do %d produto: ", (i + 1));
+			double price = sc.nextDouble();
+			
+			vect[i] = new Product(name, price);
 		}
 		
-		for(int i = 0; i< n; i++) {
-			media += vect[i];
+		double media = 0;
+		
+		for(int i = 0; i < n; i++) {
+			 media += vect[i].getPrice();
 		}
 		
-		double result = media / n;
-		
-		System.out.printf("A media dos %d valores e: %.2f", n, result);
+		System.out.println("A media da soma dos " + n + " produtos e: " + (media / n));
 		
 		sc.close();
 	}
