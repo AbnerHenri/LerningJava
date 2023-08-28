@@ -1,37 +1,49 @@
 import java.util.Scanner;
-
-import entities.Product;
+import entities.Account;
 
 public class Main {
 
 	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
 		
-		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter account number: ");
+		int number = scan.nextInt();
 		
-		Product product = new Product();
+		System.out.print("Enter account holder: ");
+		String name = scan.next();
 		
-		System.out.print("Insira o nome: ");
-		product.name = sc.next();
+		System.out.print("Is there na initial deposit (y/n)? : ");
+		char firstDeposit = scan.next().charAt(0);
 		
-		System.out.print("Insira o preco: ");
-		product.price = sc.nextDouble();
-		
-		System.out.print("Insira a quantidade: ");
-		product.quantity = sc.nextInt();
-		System.out.println(product.toString());
-		
-		System.out.print("Enter the number of the products to be added in stock: ");
-		int add = sc.nextInt();
-		product.addProducts(add);
-		System.out.println(product.toString());
-		
-		System.out.print("Enter the number of the products to be remove in stock: ");
-		int remove = sc.nextInt();
-		product.removeProducts(remove);
-		System.out.println(product.toString());
-
-		
-		sc.close();
+		if(firstDeposit == 'n') {
+			Account newAccount = new Account(number, name);
+			System.out.println("Updated data: ");
+			newAccount.showData();
+			
+			System.out.print("Enter a deposit value: ");
+			double newValue = scan.nextDouble();
+			newAccount.deposit(newValue);
+			System.out.println("Updated data: ");
+			
+			System.out.print("Enter a withdraw value: ");
+			double withDrawValue = scan.nextDouble();
+			newAccount.withdraw(withDrawValue);
+			
+		}else {
+			System.out.print("Enter inital deposit value: ");
+			double value = scan.nextDouble();
+			Account newAccount = new Account(number, name, value);
+			
+			System.out.print("Enter a deposit value: ");
+			double newValue = scan.nextDouble();
+			System.out.println("Updated data: ");
+			newAccount.deposit(newValue);
+			
+			
+			System.out.print("Enter a withdraw value: ");
+			double withDrawValue = scan.nextDouble();
+			newAccount.withdraw(withDrawValue);
+		}
+		scan.close();	
 	}
-
 }
